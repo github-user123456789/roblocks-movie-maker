@@ -13,13 +13,13 @@ make table
 
 copy thos example frame and edit it
 
-{
+`{
 		time = 0,
 		ends = 2,
 		display = "title1",
 		content = "test",
 		transition = "ZoomIn"
-},
+},`
 
 currently title1 is the only display option
 content is the text
@@ -28,18 +28,18 @@ time is when it starts
 ends is duration
 
 ### current transitions:
-ZoomIn
-SpinIn
-FlyInTopLeft
+* ZoomIn
+* SpinIn
+* FlyInTopLeft
 
 ### Here is an example of adding an image
 
-{
+`{
 	time = 0,
 	ends = 2,
 	display = "",
 	bgimage = "rbxassetid://11673018605"
-},
+},`
 
 display is set to a mode that doesnt exist so that it wont try to add text
 
