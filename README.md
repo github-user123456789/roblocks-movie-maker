@@ -36,6 +36,7 @@ ends is duration
 * ZoomIn
 * SpinIn
 * FlyInTopLeft
+* Mirror
 
 ### Here is an example of adding an image
 
