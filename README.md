@@ -4,6 +4,9 @@ Hello
 I wil add the movie player source later Yea
 But here is how you make a movie
 
+### OK I added the source code to the movie playe./r
+Please Ignore Most Of The Comments. They Make No Sense . . . .. . . .. ... ,a.falgkaegl BTW i don;/t know why i co;ded it like thart
+
 
 ## STEP 1
 
