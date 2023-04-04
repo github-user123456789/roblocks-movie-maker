@@ -14,6 +14,7 @@ make table
 copy thos example frame and edit it
 
 `
+
 {
 	time = 0,
 
@@ -26,6 +27,7 @@ copy thos example frame and edit it
 	transition = "ZoomIn"
 
 }
+
 `
 
 currently title1 is the only display option
@@ -42,6 +44,7 @@ ends is duration
 ### Here is an example of adding an image
 
 `
+
 {
 	time = 0,
 
@@ -52,6 +55,7 @@ ends is duration
 	bgimage = "rbxassetid://11673018605"
 
 }
+
 `
 
 display is set to a mode that doesnt exist so that it wont try to add text
