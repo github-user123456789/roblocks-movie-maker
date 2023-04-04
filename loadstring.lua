@@ -48,6 +48,7 @@ end
 local tween = {
 	LINEAR = Enum.EasingStyle.Linear,
 }
+
 local display = {
 	bg = bg,
 	canvas = surface,
@@ -72,7 +73,7 @@ local display = {
 	-----------
 	transitions = {
 		title1 = { -- 1 line title
-			ZoomIn = function(self, duration, text)
+			ZoomIn = function(self, duration, text, Content)
 				text.TextTransparency = 1
 				text.Size = UDim2.new(0, 0, 0, 0)
 				text.shadow.TextTransparency = 1
@@ -80,7 +81,7 @@ local display = {
 				--print(newsize)
 				TweenS:Create(text, TweenInfo.new(1, tween.LINEAR), {TextTransparency = 0}):Play() --  + (duration - .75)
 				TweenS:Create(text.shadow, TweenInfo.new(1, tween.LINEAR), {TextTransparency = self.text.shadow}):Play()
-				TweenS:Create(text, TweenInfo.new(3, tween.LINEAR), {Size = self.text.SIZE}):Play()
+				TweenS:Create(text, TweenInfo.new((#Content > 16 and 1 or 2), tween.LINEAR), {Size = self.text.SIZE}):Play() -- stupit roblops size limit also used to be 3
 				task.wait(duration-1) -- used to be -.5
 				self.fade(text)
 			end,
