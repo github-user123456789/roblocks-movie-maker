@@ -140,7 +140,9 @@ local display = {
 		noshadow = {
 			title1 = {Mirror = true}, title2 = {}
 		}
-	}
+	},
+	-- during vid player
+	audios = {},
 }
 
 -- xd'ing around --
@@ -222,6 +224,9 @@ function display:playVideo(vid)
 				local sound = Instance.new("Sound", self.canvas.Parent)
 				sound.SoundId = v.content
 				sound:Play()
+				self.audios[v.tag] = sound
+			elseif v.display == "stopaudio" then
+				self.audios[v.tag]:Stop()
 			end
 		end)
 	end
@@ -236,7 +241,8 @@ end
 })]]
 
 display:playVideo({
-	{time = 0, display = "audio", content = "rbxassetid://9245561450"}, -- song
+	{time = 0, display = "audio", content = "rbxassetid://9245554658", tag = "yes"}, -- song
+	{time = 15, display = "stopaudio", tag = "yes"}, -- song
 	{
 		time = 0,
 		ends = 2,
