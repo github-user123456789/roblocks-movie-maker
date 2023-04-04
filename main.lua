@@ -60,6 +60,7 @@ local display = {
 		size = {
 			title1 = 20,
 		},
+		SIZE = UDim2.new(.75, 0, .75, 0),
 		shadow = .5 -- shadow transparency
 	},
 	-- funcs --
@@ -79,7 +80,7 @@ local display = {
 				--print(newsize)
 				TweenS:Create(text, TweenInfo.new(1, tween.LINEAR), {TextTransparency = 0}):Play() --  + (duration - .75)
 				TweenS:Create(text.shadow, TweenInfo.new(1, tween.LINEAR), {TextTransparency = self.text.shadow}):Play()
-				TweenS:Create(text, TweenInfo.new(3, tween.LINEAR), {Size = UDim2.new(.75, 0, .75, 0)}):Play()
+				TweenS:Create(text, TweenInfo.new(3, tween.LINEAR), {Size = self.text.SIZE}):Play()
 				task.wait(duration-1) -- used to be -.5
 				self.fade(text)
 			end,
@@ -88,7 +89,7 @@ local display = {
 				text.Size = UDim2.new(0, 0, 0, 0)
 				--print(newsize)
 				TweenS:Create(text, TweenInfo.new(1, tween.LINEAR), {Rotation = 0}):Play()
-				TweenS:Create(text, TweenInfo.new(2, tween.LINEAR), {Size = UDim2.new(.75, 0, .75, 0)}):Play()
+				TweenS:Create(text, TweenInfo.new(2, tween.LINEAR), {Size = self.text.SIZE}):Play()
 				task.wait(duration-1)
 				self.fade(text)
 			end,
@@ -105,14 +106,39 @@ local display = {
 				TweenS:Create(text.shadow, TweenInfo.new(1, tween.LINEAR), {TextTransparency = 1}):Play()
 				game.Debris:AddItem(text, 1)
 			end,
+			Mirror = function(self, duration, text, Content) -- i am sorry this is so messy
+				text.TextTransparency = 1
+				local mirror = text:Clone(); mirror.Parent = text.Parent; mirror.Text = Content
+				text.Position = UDim2.new(-.5, 0, .5, 0)
+				mirror.Position = UDim2.new(1.5, 0, .5, 0)
+				
+				local rofl, XD = TweenInfo.new(1, tween.LINEAR), {Position = UDim2.new(.5, 0, .5, 0)}
+				TweenS:Create(text, rofl, XD):Play()
+				TweenS:Create(mirror, rofl, XD):Play()
+				XD = {TextTransparency = 0}
+				TweenS:Create(text, rofl, XD):Play()
+				TweenS:Create(mirror, rofl, XD):Play()
+				task.delay(1, function()
+					mirror.Parent = nil
+				end)
+				task.wait(duration-1)
+				mirror.Parent = text.Parent
+				TweenS:Create(text, rofl, {Position = UDim2.new(-.5, 0, .5, 0)}):Play()
+				TweenS:Create(mirror, rofl, {Position = UDim2.new(1.5, 0, .5, 0)}):Play()
+				XD = {TextTransparency = 1}
+				TweenS:Create(text, rofl, XD):Play()
+				TweenS:Create(mirror, rofl, XD):Play()
+				game.Debris:AddItem(text, 1)
+				game.Debris:AddItem(mirror, 1)
+				--text.TextTransparency = 1
+			end,
 		},
 		title2 = { -- 2 line title
 			FadeInAndOut = function(self, text1, text2)
-				
 			end,
 		},
 		noshadow = {
-			title1 = {}, title2 = {}
+			title1 = {Mirror = true}, title2 = {}
 		}
 	}
 }
@@ -137,7 +163,7 @@ function display:newText(props, shadow)
 	local text = Utils:Create({"TextLabel", self.bg}, {
 		TextColor3 = props.textcolor or Color3.new(1, 1, 1),
 		Font = props.font or Enum.Font.Kalam,
-		Size = props.size or UDim2.new(1, 0, 1, 0),
+		Size = props.size or self.text.SIZE, --UDim2.new(1, 0, 1, 0),
 		BackgroundTransparency = 1,
 		TextWrapped = true,
 		Text = props.text or "",
@@ -164,9 +190,9 @@ function display:newText(props, shadow)
 	return text
 end
 function display:newTitle(props, props2)
-	local text = self:newText(props, true)
+	local text = self:newText(props, props.do_shadow)
 	if not props2 then
-		self.transitions.title1[props.transition](self, props.duration or 2, text)
+		self.transitions.title1[props.transition](self, props.duration or 2, text, props.text)
 	end
 	return text
 end
@@ -184,10 +210,13 @@ function display:playVideo(vid)
 				end)
 			end
 			if v.display == "title1" then
+				local ok = self.transitions.noshadow[v.display][v.transition] == nil
 				self:newTitle({
 					transition = v.transition,
 					text = v.content,
-					duration = v.ends
+					duration = v.ends,
+					
+					do_shadow = ok
 				})
 			end
 		end)
@@ -212,29 +241,50 @@ display:playVideo({
 	},
 	{
 		time = 2,
-		ends = 3, -- sec
+		ends = 3,
 		display = "title1",
 		content = "hi guys",
 		transition = "SpinIn"
 	},
 	{
 		time = 5,
-		ends = 3, -- sec
+		ends = 3,
 		display = "title1",
-		content = "tis is my first video", --"I think i need to give an update on my current situation guys",
+		content = "tis is my first video",
 		transition = "FlyInTopLeft"
 	},
 	{
 		time = 10,
-		ends = 3, -- sec
+		ends = 3,
 		display = "title1",
 		content = "aaa",
 		transition = "FlyInTopLeft"
 	},
 	{
 		time = 13,
-		ends = 3, -- sec
+		ends = 3*4,
 		display = "",
 		bgimage = "rbxassetid://11673018605"
+	},
+	{
+		time = 13, --15,
+		ends = 5,
+		display = "title1",
+		content = "i am here to announce that ...",
+		transition = "ZoomIn"
+	},
+	{
+		time = 18, --23,
+		ends = 6,
+		display = "title1",
+		content = "riblix movie maker is open sauce!!!!!",
+		transition = "SpinIn"
+	},
+	{
+		time = 25, --23,
+		ends = 6,
+		display = "title1",
+		content = "take a look at this",
+		transition = "Mirror"
 	},
 })
