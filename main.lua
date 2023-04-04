@@ -85,11 +85,11 @@ local display = {
 				self.fade(text)
 			end,
 			SpinIn = function(self, duration, text)
-				text.Rotation = 360*2
+				text.Rotation = 360*2.5
 				text.Size = UDim2.new(0, 0, 0, 0)
 				--print(newsize)
 				TweenS:Create(text, TweenInfo.new(1, tween.LINEAR), {Rotation = 0}):Play()
-				TweenS:Create(text, TweenInfo.new(2, tween.LINEAR), {Size = self.text.SIZE}):Play()
+				TweenS:Create(text, TweenInfo.new(1, tween.LINEAR), {Size = self.text.SIZE}):Play()
 				task.wait(duration-1)
 				self.fade(text)
 			end,
@@ -112,13 +112,13 @@ local display = {
 				text.Position = UDim2.new(-.5, 0, .5, 0)
 				mirror.Position = UDim2.new(1.5, 0, .5, 0)
 				
-				local rofl, XD = TweenInfo.new(1, tween.LINEAR), {Position = UDim2.new(.5, 0, .5, 0)}
+				local rofl, XD = TweenInfo.new(1.5, tween.LINEAR), {Position = UDim2.new(.5, 0, .5, 0)}
 				TweenS:Create(text, rofl, XD):Play()
 				TweenS:Create(mirror, rofl, XD):Play()
 				XD = {TextTransparency = 0}
 				TweenS:Create(text, rofl, XD):Play()
 				TweenS:Create(mirror, rofl, XD):Play()
-				task.delay(1, function()
+				task.delay(1.5, function()
 					mirror.Parent = nil
 				end)
 				task.wait(duration-1)
@@ -218,6 +218,10 @@ function display:playVideo(vid)
 					
 					do_shadow = ok
 				})
+			elseif v.display == "audio" then
+				local sound = Instance.new("Sound", self.canvas.Parent)
+				sound.SoundId = v.content
+				sound:Play()
 			end
 		end)
 	end
@@ -232,9 +236,10 @@ end
 })]]
 
 display:playVideo({
+	{time = 0, display = "audio", content = "rbxassetid://9245561450"}, -- song
 	{
 		time = 0,
-		ends = 2, -- sec
+		ends = 2,
 		display = "title1",
 		content = "test",
 		transition = "ZoomIn"
@@ -258,7 +263,7 @@ display:playVideo({
 		ends = 3,
 		display = "title1",
 		content = "aaa",
-		transition = "FlyInTopLeft"
+		transition = "Mirror"
 	},
 	{
 		time = 13,
@@ -268,20 +273,20 @@ display:playVideo({
 	},
 	{
 		time = 13, --15,
-		ends = 5,
+		ends = 5, -- sec
 		display = "title1",
 		content = "i am here to announce that ...",
 		transition = "ZoomIn"
 	},
 	{
 		time = 18, --23,
-		ends = 6,
+		ends = 6, -- sec
 		display = "title1",
 		content = "riblix movie maker is open sauce!!!!!",
 		transition = "SpinIn"
 	},
 	{
-		time = 25, --23,
+		time = 25,
 		ends = 6,
 		display = "title1",
 		content = "take a look at this",
