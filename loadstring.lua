@@ -195,7 +195,7 @@ function display:newText(props, shadow)
 		Size = UDim2.new(1, 0, 1, 0),
 		ZIndex = 3,
 		Name = "noedit",
-		BackgroundTransparency = .75,
+		BackgroundTransparency = 1,
 	});
 	return text
 end
