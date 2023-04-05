@@ -48,7 +48,6 @@ end
 local tween = {
 	LINEAR = Enum.EasingStyle.Linear,
 }
-
 local display = {
 	bg = bg,
 	canvas = surface,
