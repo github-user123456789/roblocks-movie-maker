@@ -235,6 +235,29 @@ function display:playVideo(vid)
 				self.audios[v.tag] = sound
 			elseif v.display == "stopaudio" then
 				self.audios[v.tag]:Stop()
+			elseif v.display == "spritesheet" then
+				self.bg.Image = v.sheet
+				self.bg.BackgroundTransparency = 1
+				self.bg.ImageRectSize = v.size
+				
+				task.spawn(function()
+					local done = false
+					task.delay(v.ends, function()
+						self.bg.BackgroundTransparency = 0
+						self.bg.Image = ""
+						done = true
+					end)
+					for i = 1,v.frames do
+						if done then break
+						else
+							local xd = i-1
+							local pos = Vector2.new(xd % v.rows, math.floor(xd / v.rows))
+							--print(pos)
+							self.bg.ImageRectOffset = pos * v.size
+							task.wait(v.sec)
+						end
+					end
+				end)
 			end
 		end)
 	end
