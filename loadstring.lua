@@ -241,3 +241,135 @@ function display:playVideo(vid)
 end
 
 return display
+
+-- example
+--[==[
+display:playVideo({
+	{time = 0, display = "audio", content = "rbxassetid://9245554658", tag = "yes"}, -- song
+	{time = 13, display = "stopaudio", tag = "yes"}, -- song 15
+	--[[{
+		time = 0,
+		ends = 4, --3*4,
+		display = "spritesheet",
+		--
+		sheet = "rbxassetid://11673018605",
+		size = Vector2.new(64, 64), -- 16
+		rows = 10,
+		frames = 20,
+		sec = .2,
+	},]]
+	{
+		time = 0,
+		ends = .05*12, --4,
+		display = "spritesheet",
+		--
+		sheet = "rbxassetid://12525924175",
+		size = Vector2.new(185, 155), -- 175,155 --Vector2.new(84, 74), -- 16
+		rows = 5,
+		frames = 12,
+		sec = .05,
+	}, {
+		time = .05*13,
+		ends = .05*12, --4,
+		display = "spritesheet",
+		--
+		sheet = "rbxassetid://12525924175",
+		size = Vector2.new(185, 155), -- 175,155 --Vector2.new(84, 74), -- 16
+		rows = 5,
+		frames = 12,
+		sec = .05,
+	},
+	
+	{
+		time = 0,
+		ends = 2,
+		display = "title1",
+		content = "test Wait to the end i have cool announcement",
+		transition = "ZoomIn"
+	},
+	{
+		time = 2,
+		ends = 3,
+		display = "title1",
+		content = "hi guys",
+		transition = "SpinIn"
+	},
+	{
+		time = 5,
+		ends = 3,
+		display = "title1",
+		content = "tis is my first video", --"I think i need to give an update on my current situation guys",
+		transition = "FlyInTopLeft"
+	},
+	{
+		time = 10,
+		ends = 3,
+		display = "title1",
+		content = "aaa",
+		transition = "Mirror"
+	},
+	{
+		time = 13,
+		ends = 10, --3*4,
+		display = "",
+		bgimage = "rbxassetid://11673018605"
+	},
+	{time = 13, display = "audio", content = "rbxassetid://5131167634", tag = "yesseer"},
+	{
+		time = 13, --15,
+		ends = 5, -- sec
+		display = "title1",
+		content = "i am here to announce that ...",
+		transition = "ZoomIn"
+	},
+	{time = 18, display = "audio", content = "rbxassetid://5641467572", tag = "yesser"}, -- song
+	{time = 18, display = "stopaudio", tag = "yesseer"}, -- song
+	{
+		time = 18, --23,
+		ends = 6, -- sec
+		display = "title1",
+		content = "riblix movie maker is open sauce!!!!!",
+		transition = "SpinIn"
+	},
+	{
+		time = 25,
+		ends = 7,
+		display = "",
+		bgimage = "rbxassetid://9750752122"
+	},
+	{
+		time = 24,
+		ends = 6, -- sec
+		display = "title1",
+		content = "mario: OMG IM SO HAPY", --"YOU: wow that is so AWEOSDME",
+		transition = "SpinIn",
+	},
+	{
+		time = 25+10,
+		ends = 6,
+		display = "title1",
+		content = "take a look at this" ..[[
+
+https://github.com/github-user123456789/roblocks-movie-maker]],-- (ANIMATED BY ME IM TOBY FOX)", --stupid idiot",
+		transition = "Mirror"
+	},
+	{
+		time = 41,
+		ends = 6,
+		display = "title1",
+		content = "ich denke.. t pos.e t sirt t series is a big fan of this image",
+		transition = "FlyInTopLeft",
+		bgimage = "rbxassetid://12841781848",
+		textcolor = Color3.new(1, 0, 0),
+	},
+	{
+		time = 48,
+		ends = 6,
+		display = "title1",
+		content = "because .., .. of that gi;f of the furyr thing.,!!!!",
+		transition = "SpinIn", -- Mirror
+		bgimage = "rbxassetid://152366359",
+		textcolor = Color3.new(0, 1, 0),
+	},
+})
+]==]
