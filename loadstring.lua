@@ -218,6 +218,7 @@ function display:playVideo(vid)
 					transition = v.transition,
 					text = v.content,
 					duration = v.ends,
+					textcolor = v.textcolor,
 					
 					do_shadow = ok
 				})
