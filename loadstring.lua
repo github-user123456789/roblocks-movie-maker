@@ -163,7 +163,7 @@ function display:setBgColor(rgb)
 	
 end
 function display:newText(props, shadow)
-	local text = Utils:Create({"TextLabel", self.bg}, {
+	local text = Utils:Create({"TextBox", self.bg}, {
 		TextColor3 = props.textcolor or Color3.new(1, 1, 1),
 		Font = props.font or Enum.Font.Kalam,
 		Size = props.size or self.text.SIZE, --UDim2.new(1, 0, 1, 0),
@@ -176,7 +176,7 @@ function display:newText(props, shadow)
 		ZIndex = 2
 		--TextEditable = false,
 	}); if shadow then
-		Utils:Create({"TextLabel", text}, {
+		Utils:Create({"TextBox", text}, {
 			TextColor3 = Color3.new(0, 0, 0),
 			Font = text.Font,
 			BackgroundTransparency = 1,
@@ -190,6 +190,13 @@ function display:newText(props, shadow)
 			Name = "shadow"
 		});
 	end
+	-- make it no edit i think
+	Utils:Create({"ImageButton", text}, {
+		Size = UDim2.new(1, 0, 1, 0),
+		ZIndex = 3,
+		Name = "noedit",
+		BackgroundTransparency = .75,
+	});
 	return text
 end
 function display:newTitle(props, props2)
