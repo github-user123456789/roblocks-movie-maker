@@ -167,7 +167,7 @@ function display:newText(props, shadow)
 		TextColor3 = props.textcolor or Color3.new(1, 1, 1),
 		Font = props.font or Enum.Font.Kalam,
 		Size = props.size or self.text.SIZE, --UDim2.new(1, 0, 1, 0),
-		BackgroundTransparency = 11,
+		BackgroundTransparency = 1,
 		TextWrapped = true,
 		Text = props.text or "",
 		TextScaled = true,
