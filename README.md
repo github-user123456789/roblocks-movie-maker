@@ -1,5 +1,7 @@
 # roblocks-movie-maker
 
+## PLZ USE LOADSTRING.LUA Becaus it will get more updates yes !!!!!!!!!!!
+
 Hello
 I wil add the movie player source later Yea
 But here is how you make a movie
