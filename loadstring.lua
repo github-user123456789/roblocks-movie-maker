@@ -129,8 +129,8 @@ local display = {
 				XD = {TextTransparency = 1}
 				TweenS:Create(text, rofl, XD):Play()
 				TweenS:Create(mirror, rofl, XD):Play()
-				game.Debris:AddItem(text, 1)
-				game.Debris:AddItem(mirror, 1)
+				game.Debris:AddItem(text, 1.5)
+				game.Debris:AddItem(mirror, 1.5)
 				--text.TextTransparency = 1
 			end,
 		},
