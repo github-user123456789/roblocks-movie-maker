@@ -212,6 +212,8 @@ function display:playVideo(vid)
 			if v.bgimage then
 				self.bg.Image = v.bgimage
 				self.bg.BackgroundTransparency = 1
+				self.bg.ImageRectSize = Vector2.zero
+				self.bg.ImageRectOffset = Vector2.zero
 				print("yes", self.bg.Image, self.bg.BackgroundTransparency)
 				task.delay(v.ends, function()
 					self.bg.BackgroundTransparency = 0
